@@ -1,0 +1,25 @@
+h1{
+    background-color: #2f48b8;
+    font-size: 150%;
+}
+
+
+.top{
+    background-color: black;
+    text-align: right;
+    text-justify: auto;
+    font-size: xx-large;
+}
+
+a{
+    color: white;
+    text-decoration: none;
+}
+
+.middle{
+    background-image: url("html/images/ml1.jpeg");
+}
+
+button{
+    text-decoration: none;
+}

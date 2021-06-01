@@ -1,0 +1,53 @@
+{% load static %}
+{% static "plots" as baseUrl %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Machine Learning</title>
+        
+        <style>
+          a{
+                color: black;
+                text-decoration: none;
+            }
+          .btn-group button {
+            background-color: #4CAF50; /* Green background */
+            border: 1px solid green; /* Green border */
+            color: white; /* White text */
+            padding: 10px 24px; /* Some padding */
+            cursor: pointer; /* Pointer/hand icon */
+            float: left; /* Float the buttons side by side */
+          }
+
+          .btn-group button:not(:last-child) {
+            border-right: none; /* Prevent double borders */
+          }
+
+          /* Clear floats (clearfix hack) */
+          .btn-group:after {
+            content: "";
+            clear: both;
+            display: table;
+          }
+
+          /* Add a background color on hover */
+          .btn-group button:hover {
+            background-color: #3e8e41;
+          }
+        </style>
+       
+    </head>
+    <body >
+      <div class='top'>
+        <a href='classificationtask'>Perform Classification</a>
+      </div>
+      <div class="btn-group">
+        {% for i in features%}
+        <button onclick="document.getElementById('myimage').src='{{baseUrl}}/{{i.url}}' ">{{i.name}}</button>
+        {% endfor %}
+        <br>
+        <img id='myimage' src="{% static 'images/c.jpg' %}">
+      </div>
+    </body>
+</html>

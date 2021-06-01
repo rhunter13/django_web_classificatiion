@@ -1,0 +1,56 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <title>Login V1</title>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+   <link rel="icon" type="image/png" href="{% static 'images/icons/favicon.ico' %}"/>
+<!--===============================================================================================-->
+   <link rel="stylesheet" type="{ % static 'text/css" href="vendor/bootstrap/css/bootstrap.min.css' %}">
+<!--===============================================================================================-->
+   <link rel="stylesheet" type="text/css" href="{% static 'fonts/font-awesome-4.7.0/css/font-awesome.min.css' %}">
+<!--===============================================================================================-->
+   <link rel="stylesheet" type="text/css" href="{% static 'vendor/animate/animate.css' %}">
+<!--===============================================================================================-->   
+   <link rel="stylesheet" type="text/css" href="{% static 'vendor/css-hamburgers/hamburgers.min.css' %}">
+<!--===============================================================================================-->
+   <link rel="stylesheet" type="text/css" href="{% static 'vendor/select2/select2.min.css' %}">
+<!--===============================================================================================-->
+   <link rel="stylesheet" type="text/css" href="{% static 'css/util.css' %}">
+   <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+<!--===============================================================================================-->
+</head>
+<body>
+   
+   <div class="limiter">
+      <div class="container-login100">
+         <div class="wrap-login100">
+            <div class="login100-pic js-tilt" data-tilt>
+               <img src="{% static 'images/cloud-upload-a30f385a928e44e199a62210d578375a.jpg' %}" alt="IMG">
+            </div>
+
+
+            <form action="upload"  method="POST" enctype="multipart/form-data">
+               {% csrf_token %}
+               <span class="login100-form-title">
+                  Upload Files
+               </span>
+
+               
+               	<br>
+                  {% if check %}
+                     <p style="color:red">Upload either CSV or XML file</p>
+                     <br>
+                  {% endif %}
+
+                  <input type="file" name="train_data" placeholder="Browse">
+              <input name="form" type="submit" value="Upload"/>                              
+            </form>
+         </div>
+      </div>
+   </div>
+
+</body>
+</html>

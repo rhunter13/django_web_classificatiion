@@ -1,0 +1,122 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Machine Learning</title>
+        <style>
+            body{
+                background-image:linear-gradient(rgba(0,0,0,0.8),rgba(0,0,0,0.8)),url({% static 'images/c.jpg' %});
+                
+                background-size: cover;
+                background-attachment: fixed;
+            }
+            .top{
+                background-color: black;
+                text-align: right;
+                text-justify: auto;
+                font-size: xx-large;
+                opacity:1;
+            }
+
+            a{
+                color: white;
+                text-decoration: none;
+            }
+
+            .features{
+                width:30%;
+                margin:10% 20% 15% 50%;
+                color:cyan;
+            }
+        </style>
+       
+    </head>
+    <body >
+        <div class="top" >
+            <a href="/">Home</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <a href="regression">Regression</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <a href="classification">Classification</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            {% if logout %}
+            <a href="/login">Login</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            {% endif %}
+            {% if login %}
+            <a href="/logout">Logout</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            {% endif %}
+            <a href="/register">Register</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </div>
+        <div class="features">
+            {% if feature_check %}
+            Please select atleast one predictor.
+            {% endif %}
+            <br>
+            <form action="classificationtask" method="POST">
+                  {% csrf_token %}
+                  <label for="model"><b>Choose the model:</b></label>
+                  <select id="model" name="model">
+                    <option value="knn">K-Nearest Neighbours</option>
+                     <option value="logistic_regression">Logistic Regression</option>
+                     <option value="decision_trees">Decision Trees</option>
+                    
+                     <option value="svm">SVM</option>
+                     <option value="sgd_hinge">SGD with Hinge Loss</option>
+                     <option value="sgd_log">SGD with Log Loss</option>
+                     <option value="sgd_modifiedhuber">SGD with modified Huber Loss</option>
+                     <option value="sgd_squaredhinge">SGD with squared Hinge Loss</option>
+                     <option value="sgd_perceptron">SGD with Perceptron Loss</option>
+                     <option value="sgd_squaredloss">SGD with Squared loss</option>
+                     <option value="sgd_huber">SGD with huber loss</option>
+                     <option value="sgd_epsiloninsensitive">SGD with Epsilon-Insensitive Loss</option>
+                     <option value="sgd_squaredepsiloninsensitive">SGD with squared Epsilon-Insensitive Loss</option>
+                     <option value="random_forest">Random Forest</option>
+                     <option value="bagging_knn">Bagging using KNN</option>
+                     <option value="bagging_decision">Bagging using decision trees</option>
+                     <option value="bagging_log">Bagging using logistic regression</option>
+                     <option value="bagging_svm">Bagging using SVM</option>
+                    <option value="bagging_sgd(hinge)">Bagging using SGD(Hinge)</option>
+                    <option value="bagging_sgd(log)">Bagging using SGD(Log)</option>
+                    <option value="bagging_sgd(modified_huber">Bagging using SGD(Modified Huber)</option>
+                    <option value="bagging_sgd(squared_hinge)">Bagging using SGD(Squared Hinge)</option>
+                    <option value="bagging_sgd(perceptron)">Bagging using SGD(Perceptron)</option>
+                    <option value="bagging_sgd(squaredloss)">Bagging using SGD(Squared Loss)</option>
+                    <option value="bagging_sgd(huber)">Bagging using SGD(Huber)</option>
+                    <option value="bagging_sgd(epsiloninsensitive)">Bagging using SGD(Epsilon Insensitive)</option>
+                    <option value="bagging_sgd(squared_epsiloninsensitive">Bagging using SGD(Squared Epsilon Insensitive)</option>
+                     <option value="adaboost_decision">Adaboost using decision trees</option>
+                     <option value="adaboost_log">Adaboost using logistic regression</option>
+                     <option value="adaboost_svm">Adaboost using SVM</option>
+                    <option value="adaboost_sgd(hinge)">Adaboost using SGD(Hinge)</option>
+                    <option value="adaboost_sgd(log)">Adaboost using SGD(Log)</option>
+                    <option value="adaboost_sgd(modified_huber">Adaboost using SGD(Modified Huber)</option>
+                    <option value="adaboost_sgd(squared_hinge)">Adaboost using SGD(Squared Hinge)</option>
+                    <option value="adaboost_sgd(perceptron)">Adaboost using SGD(Perceptron)</option>
+                    <option value="adaboost_sgd(squaredloss)">Adaboost using SGD(Squared Loss)</option>
+                    <option value="adaboost_sgd(huber)">Adaboost using SGD(Huber)</option>
+                    <option value="adaboost_sgd(epsiloninsensitive)">Adaboost using SGD(Epsilon Insensitive)</option>
+                    <option value="adaboost_sgd(squared_epsiloninsensitive">Adaboost using SGD(Squared Epsilon Insensitive)</option>
+                  </select>
+                  <br>
+                  <br>
+                  <h3>Select the predictors</h3>
+                  {% for feature in features%}
+                  <input type="checkbox" name={{feature}} value={{feature}}>
+                  <label for={{feature}}> {{feature}}</label><br>
+                  {% endfor %}
+                  <br>
+                  {% if target_check %}
+                  Please select a non-continuous target
+                  {% endif %}
+                  <br>
+                  <label for="target" ><b>Choose a target variable: </b></label>
+                  <select id="target" name="target">
+                  {% for feature in features%}
+                     <option value={{feature}}>{{feature}}</option>
+                  {% endfor %}
+                  </select>
+                  <br>
+                  <br>
+                  <input type="submit" value="Submit">
+            </form>
+        </div>
+    </body>
+</html>

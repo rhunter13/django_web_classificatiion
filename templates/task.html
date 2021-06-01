@@ -1,0 +1,72 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <title>Machine Learning</title>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+   <link rel="icon" type="image/png" href="{% static 'images/icons/favicon.ico' %}"/>
+<!--===============================================================================================-->
+   <link rel="stylesheet" type="{ % static 'text/css" href="vendor/bootstrap/css/bootstrap.min.css' %}">
+<!--===============================================================================================-->
+   <link rel="stylesheet" type="text/css" href="{% static 'fonts/font-awesome-4.7.0/css/font-awesome.min.css' %}">
+<!--===============================================================================================-->
+   <link rel="stylesheet" type="text/css" href="{% static 'vendor/animate/animate.css' %}">
+<!--===============================================================================================-->   
+   <link rel="stylesheet" type="text/css" href="{% static 'vendor/css-hamburgers/hamburgers.min.css' %}">
+<!--===============================================================================================-->
+   <link rel="stylesheet" type="text/css" href="{% static 'vendor/select2/select2.min.css' %}">
+<!--===============================================================================================-->
+   <link rel="stylesheet" type="text/css" href="{% static 'css/util.css' %}">
+   <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+<!--===============================================================================================-->
+<style>
+body {
+  background-image: url({% static 'images/ai.jpeg' %});
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+</style>	
+</head>
+<body>
+   
+   <div class="limiter">
+      <div class="container-login100">
+         <div class="wrap-login100">
+            
+
+            <form action="classificationtask" method="POST">
+      {% csrf_token %}
+      <label for="model"><b>Choose the model:</b></label>
+      <select id="model" name="model">
+         <option value="decision_trees">Decision Trees</option>
+         <option value="random_forest">Random Forest</option>
+         <option value="logistic_regression">Logistic Regression</option>
+         <option value="svm">SVM</option>
+      </select>
+      <br>
+      <br>
+      <h3>Select the predictors</h3>
+      {% for feature in features%}
+      <input type="checkbox" name={{feature}} value={{feature}}>
+      <label for={{feature}}> {{feature}}</label><br>
+      {% endfor %}
+      <br>
+      <label for="target" ><b>Choose a target variable: </b></label>
+      <select id="target" name="target">
+      {% for feature in features%}
+         <option value={{feature}}>{{feature}}</option>
+      {% endfor %}
+      </select>
+      <br>
+      <br>
+      <input type="submit" value="Submit">
+            </form>
+         </div>
+      </div>
+   </div>
+
+</body>
+</html>

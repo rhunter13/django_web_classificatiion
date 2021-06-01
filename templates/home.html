@@ -1,0 +1,45 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Machine Learning</title>
+        
+        <style>
+            body{
+                background-image:linear-gradient(rgba(0,0,0,0.8),rgba(0,0,0,0.8)),url({% static 'images/c.jpg' %});
+                
+                background-size: cover;
+                background-attachment: fixed;
+            }
+            .top{
+                background-color: black;
+                text-align: right;
+                text-justify: auto;
+                font-size: xx-large;
+                
+            }
+
+            a{
+                color: white;
+                text-decoration: none;
+            }
+        </style>
+       
+    </head>
+    <body >
+        <div class="top" >
+            <a href="">Home</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <a href="algo/regression">Regression</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <a href="algo/classification">Classification</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            {% if logout %}
+            <a href="login">Login</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            {% endif %}
+            {% if login %}
+            <a href="logout">Logout</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            {% endif %}
+            <a href="register">Register</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </div>
+              
+    </body>
+</html>

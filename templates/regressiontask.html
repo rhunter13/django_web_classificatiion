@@ -1,0 +1,79 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Machine Learning</title>
+        
+        <style>
+            body{
+                background-image:linear-gradient(rgba(0,0,0,0.8),rgba(0,0,0,0.8)),url({% static 'images/c.jpg' %});
+                
+                background-size: cover;
+                background-attachment: fixed;
+            }
+            .top{
+                background-color: black;
+                text-align: right;
+                text-justify: auto;
+                font-size: xx-large;
+                opacity:1;
+            }
+
+            a{
+                color: white;
+                text-decoration: none;
+            }
+
+            .features{
+                width:30%;
+                margin:10% 20% 15% 50%;
+                color: cyan;
+            }
+        </style>
+       
+    </head>
+    <body >
+        <div class="top" >
+            <a href="/">Home</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <a href="regression">Regression</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <a href="classification">Classification</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            {% if logout %}
+            <a href="/login">Login</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            {% endif %}
+            {% if login %}
+            <a href="/logout">Logout</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            {% endif %}
+            <a href="/register">Register</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </div>
+        <div class="features">
+            <form action="regressiontask" method="POST">
+                  {% csrf_token %}
+                  <label for="model"><b>Choose the model:</b></label>
+                  <select id="model" name="model">
+                     <option value="linear_regression">Linear Regression</option>
+                     <option value="ridge_regression">Ridge Regression</option>
+                     <option value="lasso_regression">Lasso Regression</option>
+                     <option value="elasticnet">Elasticnet</option>
+                  </select>
+                  <br>
+                  <br>
+                  <h3>Select the predictors</h3>
+                  {% for feature in features%}
+                  <input type="checkbox" name={{feature}} value={{feature}}>
+                  <label for={{feature}}> {{feature}}</label><br>
+                  {% endfor %}
+                  <br>
+                  <label for="target" ><b>Choose a target variable: </b></label>
+                  <select id="target" name="target">
+                  {% for feature in features%}
+                     <option value={{feature}}>{{feature}}</option>
+                  {% endfor %}
+                  </select>
+                  <br>
+                  <br>
+                  <input type="submit" value="Submit">
+            </form>
+        </div>
+    </body>
+</html>

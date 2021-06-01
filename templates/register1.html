@@ -1,0 +1,109 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Machine Learning</title>
+        
+        <style>
+            body{
+                background-image:linear-gradient(rgba(0,0,0,0.8),rgba(0,0,0,0.8)),url({% static 'images/c.jpg' %});
+                
+                background-size: cover;
+                background-attachment: fixed;
+            }
+            .top{
+                text-align: right;
+                text-justify: auto;
+                font-size: xx-large;
+                background-color: black;
+                opacity: 1;
+                background-image: unset;
+
+            }
+
+            a{
+                color: #f0ffff;
+                text-decoration: none;
+            }
+
+            .register{
+                width:30%;
+                text-align: center;
+                margin:15% 20% 15% 50%;
+                color:cyan;
+            }
+            
+        </style>
+       
+    </head>
+    <body>
+        <div class="top">
+            <a href="home">Home</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <a href="algo/regression">Regression</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <a href="algo/classification">Classification</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            {% if logout %}
+            <a href="login">Login</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            {% endif %}
+            {% if login %}
+            <a href="logout">Logout</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            {% endif %}
+            <a href="register">Register</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </div>
+        <div class="register" >
+            <form method="POST" action="register">
+                {% csrf_token %}
+                {% if username_check %}
+               <p style="color:red; font-size: large;">The username already exists</p>
+                <br>
+                {% endif %}
+                {% if email_check %}
+               <p style="color:red">The E-Mail ID already exists</p>
+                <br>
+                {% endif %}
+               {% if password_check %}
+               <p style="color:red">The passwords do not match</p>
+                <br>
+                {% endif %}
+                <table align="center">
+                    <tr>
+                        <td><b style="color:cyan; font-size:x-large;">First Name</b></td>
+                        <td><input type="text" name="first_name"></td>
+                    </tr>
+                    <tr>
+                        <td><b style="color:cyan; font-size:x-large;">Last Name</b></td>
+                        <td><input type="text" name="last_name"></td>
+                    </tr>
+                    <tr>
+                        <td><b style="color:cyan; font-size:x-large;">Username</b></td>
+                        <td><input type="text" name="username"></td>
+                    </tr>
+                    <tr>
+                        <td><b style="color:cyan; font-size:x-large;">Email</b></td>
+                        <td><input type="email" name="email"></td>
+                    </tr>
+                    <tr>
+                        <td><b style="color:cyan; font-size:x-large;">Password</b></td>
+                        <td><input type="password" name="password1"></td>
+                    </tr>
+                    <tr>
+                        <td><b style="color:cyan; font-size:x-large;">Confirm Password</b></td>
+                        <td><input type="password" name="password2"></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td><button>Submit</button></td>
+                    </tr>   
+                </table>
+            </form>
+        </div>
+    </body>
+</html>

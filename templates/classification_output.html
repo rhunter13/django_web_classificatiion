@@ -1,0 +1,100 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Machine Learning</title>
+        
+        <style>
+            body{
+                background-image:linear-gradient(rgba(0,0,0,0.8),rgba(0,0,0,0.8)),url({% static 'images/c.jpg' %});
+                
+                background-size: cover;
+                background-attachment: fixed;                
+            }
+            .top{
+                background-color: black;
+                text-align: right;
+                text-justify: auto;
+                font-size: xx-large;
+                opacity:1;
+            }
+
+            a{
+                color: #f0ffff;
+                text-decoration: none;
+            }
+            .output{
+              background-color:none;
+              text-align: center;
+              
+              opacity: 100;
+              color: cyan;
+             
+            }
+            .metrics{
+              text-align: left;
+              color:cyan;
+              margin-left: 35%;
+              margin-right: 25%;
+            }
+            .matrix{
+              margin-top: 5%;
+              text-align:center;
+              color:cyan;
+            }
+        </style>
+       
+    </head>
+    <body >
+        <div class='body'>
+          <div class="top" >
+            <a href="/">Home</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <a href="regression">Regression</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <a href="classification">Classification</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            {% if logout %}
+            <a href="/login">Login</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            {% endif %}
+            {% if login %}
+            <a href="/logout">Logout</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            {% endif %}
+            <a href="/register">Register</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </div>
+        <div class='matrix'>
+          <table align=center style="border-color: white" border='2'>
+            {% for i in mat %}
+            <tr>
+              {% for j in i %}
+              <th>{{j}}</th>
+              {% endfor %}
+            </tr>
+            {% endfor %}
+          </table>
+        <div class='metrics' style='font-size: large;'>
+          <ul>
+            <li>Accuracy is : {{accuracy}}</li>
+            <li>Precision is : {{precision}}</li>
+            <li>Recall is : {{recall}}</li>
+            <li>Mathew Correlational coefficient is : {{mathew}}</li>
+            <li>Cohen's Kappa score is : {{kappa}}</li>
+          </ul>
+        </div>
+        <div class='output' style="opacity: 1">
+            <table align=center border="2" style="border-color: white">
+               <tr>
+                  <th>ID</th>
+                  <th>Actual Label</th>
+                  <th>Predicted Label</th>
+               </tr>
+               {% for i in values %}
+               <tr>
+                  <th><b>{{i.index}}</b></th>
+                  <th><b>{{i.actual}}</b></th>
+                  <th><b>{{i.predicted}}</b></th>
+               </tr>
+               {% endfor %}
+            </table>
+          </div>
+        </div>
+    </body>
+</html>

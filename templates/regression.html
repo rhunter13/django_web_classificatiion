@@ -1,0 +1,81 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Machine Learning</title>
+        <style>
+            a{
+                color: #f0ffff;
+                text-decoration: none;
+            }
+            body{
+                background-image:linear-gradient(rgba(0,0,0,0.8),rgba(0,0,0,0.8)),url({% static 'images/c.jpg' %});
+                
+                background-size: cover;
+                background-attachment: fixed;
+            }
+            div.top{
+                text-align: right;
+                text-justify: auto;
+                font-size: xx-large;
+                background-color: black;
+                opacity: 1;
+            }
+            .regression{
+                text-align:center;
+                width:30%;
+                margin:15% 20% 15% 50%;
+            }
+            button{
+
+            }
+        </style>
+    </head>
+    <body>
+        <div class="top">
+            <a href="/">Home</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <a href="regression">Regression</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <a href="classification">Classification</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            {% if logout %}
+            <a href="/login">Login</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            {% endif %}
+            {% if login %}
+            <a href="/logout">Logout</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            {% endif %}
+            <a href="/register">Register</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </div>
+        <div class="regression">
+            {% if loggedin %}
+                <p style="color:red;margin-right: 35%; font-size: large">You need to login before uploading</p>
+                     <br>
+            {% endif %}
+            {% if check %}
+                     <p style="color:red;margin-right: 35%; font-size: large">Upload either CSV or XML file</p>
+                     <br>
+            {% endif %}
+            <form action="regression" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <table align="center">
+                    <tr>
+                        <td><label for="data"><b style="color:cyan; font-size:xx-large;">Select a file:</b></label></td>
+                        <td><input type="file" name="train_data" id="data"></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </table>
+                <button style="margin-right: 35%"><b style="color:black; font-size:x-large;">Upload</b></button>
+            </form>
+        </div>
+    </body>
+</html>
